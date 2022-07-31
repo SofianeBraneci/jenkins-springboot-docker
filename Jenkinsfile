@@ -4,8 +4,10 @@ pipeline{
         stage('compiling'){
             steps{
                 echo "compiling the application"
-                sh "mvn --version"
-                sh "mvn compile"
+               withMaven{
+                 sh "mvn --version"
+                 sh "mvn compile"
+               }
                 echo "compiling done"
             }
         }
@@ -13,8 +15,10 @@ pipeline{
         stage('building'){
             steps{
                 echo "Building the application"
-                sh "mvn clean"
-                sh "mvn build"
+                withMaven{
+                    sh "mvn clean"
+                    sh "mvn build"
+                }
                 echo "Project was built"
             }
         }
@@ -22,13 +26,17 @@ pipeline{
         stage("test"){
             steps{
                 echo "Testing phase"
-                sh "mvn test"
+                withMaven{
+                    sh "mvn test"
+                }
             }
         }
         stage("package"){
             steps{
                 echo "packaging the app into a jar file"
-                sh "mvn package"
+                withMaven{
+                    sh "mvn package"
+                }
             }
         }
         stage("deploy"){
