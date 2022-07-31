@@ -30,6 +30,8 @@ pipeline{
         stage("deploy"){
              steps{
                 echo "deploying to docker"
+                sh "docker build --tag=server:latest"
+                sh "docker run -d -p 8081:8081 server:latest"
              }
         }
     }
