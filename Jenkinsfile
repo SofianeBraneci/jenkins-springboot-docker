@@ -7,18 +7,9 @@ pipeline{
         stage('compiling'){
             steps{
                 echo "compiling the application"
-                sh "mvn --version"
+                sh "mvn clean"
                 sh "mvn compile"
                 echo "compiling done"
-            }
-        }
-
-        stage('building'){
-            steps{
-                echo "Building the application"
-                sh "mvn clean"
-                sh "mvn build"
-                echo "Project was built"
             }
         }
 
@@ -26,6 +17,8 @@ pipeline{
             steps{
                 echo "Testing phase"
                 sh "mvn test"
+                echo "Testing done"
+
             }
         }
         stage("package"){
