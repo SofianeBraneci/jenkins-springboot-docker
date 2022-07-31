@@ -4,6 +4,7 @@ pipeline{
         stage('compiling'){
             steps{
                 echo "compiling the application"
+                sh "mvn --version"
                 sh "mvn compile"
                 echo "compiling done"
             }
