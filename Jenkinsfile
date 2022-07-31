@@ -10,22 +10,30 @@ pipeline{
         }
 
         stage('building'){
-            echo "Building the application"
-            sh "mvn clean"
-            sh "mvn build"
-            echo "Project was built"
+            steps{
+                echo "Building the application"
+                sh "mvn clean"
+                sh "mvn build"
+                echo "Project was built"
+            }
         }
 
         stage("test"){
-            echo "Testing phase"
-            sh "mvn test"
+            steps{
+                echo "Testing phase"
+                sh "mvn test"
+            }
         }
         stage("package"){
-            echo "packaging the app into a jar file"
-            sh "mvn package"
+            steps{
+                echo "packaging the app into a jar file"
+                sh "mvn package"
+            }
         }
         stage("deploy"){
-            echo "deploying to docker"
+             steps{
+                echo "deploying to docker"
+             }
         }
     }
 }
