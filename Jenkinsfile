@@ -32,8 +32,7 @@ pipeline{
              steps{
                 echo "deploying to docker"
                 sh "docker info"
-                sh "docker build . --tag=server:latest"
-                sh "docker run -d -p 8081:8081 server:latest"
+                sh "docker compose up"
              }
         }
     }
